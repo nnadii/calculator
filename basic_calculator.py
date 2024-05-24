@@ -30,6 +30,18 @@ def clear():
     entry.delete(0, tk.END)
 
 
+def delete():
+    total_string = entry.get()
+    if (total_string):
+        new_string = total_string[:-1]
+        clear()
+        entry.insert(0, new_string)
+    else:
+        clear()
+        entry.insert(0, tkinter.messagebox.showinfo("Error", "Error"))
+        entry.delete(0, tk.END)
+
+
 button_1 = tk.Button(master=frame, text="1", padx=15,
                      pady=5, width=3, command=lambda: my_click(1))
 button_1.grid(row=1, column=0, pady=2)
@@ -84,12 +96,17 @@ button_div = tk.Button(master=frame, text="/", padx=15,
 button_div.grid(row=6, column=0, pady=2)
 
 button_clear = tk.Button(master=frame, text="clear",
-                         padx=15, pady=5, width=12, command=clear)
-button_clear.grid(row=6, column=1, columnspan=2, pady=2)
+                         padx=15, pady=5, width=3, command=clear)
+button_clear.grid(row=6, column=1, pady=2)
+
+button_clear = tk.Button(master=frame, text="del",
+                         padx=15, pady=5, width=3, command=lambda: delete())
+button_clear.grid(row=6, column=2, pady=2)
 
 button_equal = tk.Button(master=frame, text="=", padx=15,
                          pady=5, width=3, command=equal)
 button_equal.grid(row=7, column=0, pady=2)
+
 button_0 = tk.Button(master=frame, text="0", padx=15,
                      pady=5, width=12, command=lambda: my_click(0))
 button_0.grid(row=7, column=1, columnspan=2, pady=2)
